@@ -1,9 +1,20 @@
 //const express = require("express"); // CommonJS
-import express from "express"; //ES Module
+import express from 'express' //ES Module
 import userRouter from './routes/userRoutes.js'
+import db from './config/db.js'
+
 
 // Create app
 const app = express();
+
+// Connection database
+try {
+    await db.authenticate()
+    console.log('Correct connection with database')
+} catch (error) {
+    console.log(error)
+}
+
 
 // Settings
 app.set('view engine', 'pug')

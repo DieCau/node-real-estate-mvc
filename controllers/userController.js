@@ -10,9 +10,15 @@ const formRegister = (req, res) => {
     })
 }
 
+const formForgetPassword = (req, res) => {
+    res.render('auth/forget-password', {
+        page: 'Recover your access!'
+    })
+}
 
 
 export {
     formLogin,
-    formRegister
+    formRegister,
+    formForgetPassword
 }
