@@ -7,9 +7,14 @@ import db from './config/db.js'
 // Create app
 const app = express();
 
+// Enable reading data from forms
+app.use(express.urlencoded({ extended: true })) 
+
+
 // Connection database
 try {
     await db.authenticate()
+    db.sync()
     console.log('Correct connection with database')
 } catch (error) {
     console.log(error)
@@ -28,7 +33,7 @@ app.use( express.static('public'))
 app.use('/auth', userRouter)
 
 //Configure Port and start project
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Server on listen ${port}`);
